@@ -114,9 +114,6 @@ In the recent past, custom elements have been introduced and are being natively 
 Custom elements are very similar to jQuery, but the difference is that custom elements can take advantage of declarative reusable HTML templates.
 This means that it is not required to ship complete javascript scripts before content can be shown on the screen.
 
-Custom elements can also take advantage of progressive enhancement by providing an initial HTML definition until an element is upgraded.
-The user can therefore already see content while the application is loading, resulting in a nicer user experience
-
 **Note that custom elements do not include Polymer.
 While Polymer is a library to take advantage of custom elements, it is not required to build a website with custom elements.
 It is therefore possible to build a website with pure custom elements, without any dependency**
