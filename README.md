@@ -118,7 +118,65 @@ This means that it is not required to ship complete javascript scripts before co
 While Polymer is a library to take advantage of custom elements, it is not required to build a website with custom elements.
 It is therefore possible to build a website with pure custom elements, without any dependency**
 
+## Implementation
+
+The implementation of custom elements is two-fold: the committee developers and a core developer team.
+
+### Core developer team
+
+The sole responsibility of the core developer team is to support the users of the custom elements, in this case the committee developers.
+This team maintains all custom elements that are generic and used by each committee.
+An important distinction is the level of knowledge required to build and maintain these custom elements.
+While committee developers very likely have limited experience with custom elements and/or developing websites, the core team requires extensive knowledge.
+Therefore, the external API of custom elements should be very simple, while the actual implementation is hidden from the users (committee developers).
+
+#### Example
+
+An example of this distinction is [`<wisvch-committee>`](https://github.com/WISVCH/wisvch-committee).
+The external API of this component exists of two attributes: `committee-name` and `src`.
+
+* `committee-name`: the name of the committee
+* `src`: the location of a `.json`-file
+
+An example setup for the `.json`-file is:
+
+```json
+{
+  "committee": [
+    {
+      "role": "Chairman",
+      "name": "Daan Schipper",
+      "img": "chairman"
+    },
+    {
+      "role": "Secretary",
+      "name": "Felix van Doorn",
+      "img": "secretary"
+    }
+  ]
+}
+```
+
+As you can see, the user of this component needs to know the format of the `.json`-file and supply a String as `committee-name`.
+Contrary, the implementation details of the custom elements are hidden from the user.
+The final example usage of this element is:
+
+```HTML
+<wisvch-committee committee-name="Lustrum Committee" src="committee/committee.json"></wisvch-committee>
+```
+
+### Team expansion
+
+The core developer team needs to be sufficiently big to support the committees of each year.
+At the moment of writing, Martijn Janssen and Tim van der Lippe support the Symposium Committee as well as the LanCie (together with Matthijs Kok).
+We predict that a total of 5 core developers is sufficient to support the other committees.
+
+A strict requirement for preventing knowledge drain, as students graduate and leave the association, is to have sufficient adoption of new core developers.
+The team must transfer knowledge to new core developers, before other core developers leave.
+This also requires extensive documentation, including a description of the workflow, the APIs of custom elements and general coding conventions.
+
 ## Conclusion
 
 Concluding, the proposal is to employ custom elements to build reusable components that can be used in a committee website.
 Reusing these components significantly speeds up the development process of committees, such that they can focus on the content or custom components if they require so.
+A core developer team can build a limited set of custom elements, which can be used without prior technology knowledge, for committee developers.
